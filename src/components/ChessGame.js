@@ -10,7 +10,7 @@ import Chess from 'chess.js'
 // }
 
 
-function Game() {
+export default function ChessGame() {
 
   const [fen, setFen] = useState("start")
 
@@ -32,8 +32,8 @@ function Game() {
         from: sourceSquare,
         to: targetSquare
       })
-
-      if (move === null) return; // checking valid moves
+      // check for valid move
+      if (move === null) return; 
       // provide the fen string
       setFen(game.current.fen())
     }
@@ -50,5 +50,3 @@ function Game() {
     </div>
   );
 }
-
-export default Game;

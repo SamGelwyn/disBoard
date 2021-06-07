@@ -1,20 +1,12 @@
 import './App.css';
-import Game from './components/Game'
-
-// const container = {
-//   marginTop: "2rem",
-//   display: "flex",
-//   justifyContent: "space-around",
-//   alignItem: "center"
-// }
-
+import ChessGame from './components/ChessGame'
 
 function App() {
 
   return (
     <div className="App">
       <header className="App-header">
-        <Game/>
+        <ChessGame/>
       </header>
     </div>
   );
