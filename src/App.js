@@ -1,15 +1,36 @@
 import './App.css';
 import ChessGame from './components/ChessGame'
+import React from "react"
+import Signup from "./components/Signup"
+import { Container } from "react-bootstrap"
+import { AuthProvider } from "./contexts/AuthContext"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import DisBoard from "./components/disBoard"
+import Login from "./components/Login"
+import PrivateRoute from "./components/PrivateRoute"
+import ForgotPassword from "./components/ForgotPassword"
+import UpdateProfile from "./components/UpdateProfile"
 
-function App() {
-
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <ChessGame/>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="w-100" style={{ maxWidth: "600px" }}>
+        <Router>
+          <AuthProvider>
+            <Switch>
+              <PrivateRoute exact path="/" component={DisBoard} />
+              <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <PrivateRoute path="/chess-game" component={ChessGame} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+            </Switch>
+          </AuthProvider>
+        </Router>
+      </div>
+    </Container>
+  )
+};
