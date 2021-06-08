@@ -39,8 +39,8 @@ export default function ChessGame() {
     }
 
   return (
-    <div className="Game">
-      <header className="Game-header">
+    <div>
+      <header>
         {
           game.current && game.current.game_over() ? <div> <h1>Game Over</h1><button onClick={resetGame}>Play Again</button> </div>: <span></span>
         }
