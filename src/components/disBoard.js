@@ -8,16 +8,6 @@ export default function DisBoard() {
   const { currentUser, logout } = useAuth()
   const history = useHistory()
 
-  async function handleLogout() {
-    setError("")
-
-    try {
-      await logout()
-      history.push("/login")
-    } catch {
-      setError("Failed to log out")
-    }
-  }
 
   return (
     <>
@@ -31,11 +21,6 @@ export default function DisBoard() {
           </Link>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
-      </div>
     </>
   )
 };
