@@ -4,15 +4,14 @@ import "firebase/auth"
 
 const app = firebase.initializeApp({
 
+  databaseURL: "https://disboard-b79f2.firebaseio.com",
+  apiKey: "AIzaSyD5Rv3t-japBRlAZqYqB_mEGRXDs8QHIbc",
+  authDomain: "disboard-b79f2.firebaseapp.com",
+  projectId: "disboard-b79f2",
+  storageBucket: "disboard-b79f2.appspot.com",
+  messagingSenderId: "42344056741",
+  appId: "1:42344056741:web:2973773bdaf96ac3c9ca4c"
 
-  apiKey: "AIzaSyCn05cBxT-st8YFRpW1H1iVTknPtwVNm6E",
-  authDomain: "ngnldisboard-45759.firebaseapp.com",
-  databaseURL: "https://ngnldisboard-45759.firebaseio.com",
-
-  projectId: "ngnldisboard-45759",
-  storageBucket: "ngnldisboard-45759.appspot.com",
-  messagingSenderId: "542026596785",
-  appId: "1:542026596785:web:f50651571511873d067d90"
 })
 
 export const auth = app.auth()
