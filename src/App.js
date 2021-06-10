@@ -20,7 +20,7 @@ export default function App() {
       style={{ minHeight: "100vh" }}>
       <AuthProvider>
         <header>
-          <h1>!disBoard</h1>
+          <h1>disBoard</h1>
           <nav>
 
             <SignOut />
@@ -42,7 +42,8 @@ export default function App() {
 
           </Router>
         </div>
-        <div classname="w-100" style={{display: 'inline-block'}}>
+        <div classname="w-100" style={{display: 'inline-block',
+          maxWidth: '300px'}}>
           <ChatRoom />
         </div>
       </AuthProvider>

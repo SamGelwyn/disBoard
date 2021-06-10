@@ -49,15 +49,46 @@ header {
   align-items: center;
   justify-content: space-between;
   z-index: 99;
-  padding: 10px;
+  padding: 1rem 6rem;
   box-sizing: border-box;
 }
 
 main {
   padding: 1px;
-  max-height: 50vh;
-  margin: 1vh 0 1vh;
+  max-height: 65vh;
+
+  margin: 0 ;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+}
+
+p {
+  max-width: 500px;
+  margin-bottom: 12px;
+  line-height: 24px;
+  padding: 10px 20px;
+  border-radius: 0.3em;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+}
+
+.sent {
+  flex-direction: row-reverse;
+}
+
+.sent p {
+  color: white;
+  background: #0b93f6;
+  align-self: flex-end;
+}
+.received p {
+  background: #e5e5ea;
+  color: black;
 }
