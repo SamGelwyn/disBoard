@@ -11,36 +11,41 @@ import PrivateRoute from "./components/PrivateRoute"
 import ForgotPassword from "./components/ForgotPassword"
 import UpdateProfile from "./components/UpdateProfile"
 import SignOut from "./components/SignOut"
+import ChatRoom from "./components/ChatRoom"
 
 export default function App() {
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <header>
-        <h1>⚛️🔥💬</h1>
-        <nav>
-        <AuthProvider>
-        <SignOut />
-        </AuthProvider>
-        </nav>
-        
-      </header>
-      <div className="w-100" style={{ maxWidth: "600px" }}>
-        <Router>
-          <AuthProvider>
-            <Switch>
-              <PrivateRoute exact path="/" component={DisBoard} />
-              <PrivateRoute path="/update-profile" component={UpdateProfile} />
-              <PrivateRoute path="/chess-game" component={ChessGame} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-            </Switch>
-          </AuthProvider>
-        </Router>
-      </div>
+      style={{ minHeight: "100vh" }}>
+      <AuthProvider>
+        <header>
+          <h1>!disBoard</h1>
+          <nav>
+
+            <SignOut />
+
+          </nav>
+        </header>
+
+        <div className="w-100" style={{ maxWidth: "600px" }}>
+          <Router>
+
+              <Switch>
+                <PrivateRoute exact path="/" component={DisBoard} />
+                <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                <PrivateRoute path="/chess-game" component={ChessGame} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/login" component={Login} />
+                <Route path="/forgot-password" component={ForgotPassword} />
+              </Switch>
+
+          </Router>
+        </div>
+        <div classname="w-100" style={{display: 'inline-block'}}>
+          <ChatRoom />
+        </div>
+      </AuthProvider>
     </Container>
-  )
-};
+  );
+}

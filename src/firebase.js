@@ -4,9 +4,10 @@ import "firebase/auth"
 
 const app = firebase.initializeApp({
 
-  databaseURL: "https://disboard-b79f2.firebaseio.com",
+  
   apiKey: "AIzaSyD5Rv3t-japBRlAZqYqB_mEGRXDs8QHIbc",
   authDomain: "disboard-b79f2.firebaseapp.com",
+  databaseURL: "https://disboard-b79f2.firebaseio.com",
   projectId: "disboard-b79f2",
   storageBucket: "disboard-b79f2.appspot.com",
   messagingSenderId: "42344056741",

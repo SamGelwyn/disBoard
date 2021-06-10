@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Form, Button, Card, } from "react-bootstrap"
+import { useHistory } from "react-router-dom"
 import ChessBoard from 'chessboardjsx'
 import Chess from 'chess.js'
 
@@ -18,6 +20,10 @@ export default function ChessGame() {
     game.current.clear();
     game.current.reset();
     setFen("start")
+  }
+  const history = useHistory()
+  const leaveGame = () => {
+    history.push("/")
   }
 
   let game = useRef(null);
@@ -39,14 +45,22 @@ export default function ChessGame() {
     }
 
   return (
-    <div>
-      <header>
-        {
-          game.current && game.current.game_over() ? <div> <h1>Game Over</h1><button onClick={resetGame}>Play Again</button> </div>: <span></span>
-        }
-      </header>
-      <ChessBoard position={fen}
-      onDrop={onDrop}/> 
-    </div>
+    <>
+      <Card>
+        <Card.Body>
+          {
+            game.current && game.current.game_over() ? <div> 
+              <h1>Game Over! Play again?</h1>
+              <Button variant="link" onClick={resetGame}>Yes</Button>
+              <Button variant="link" onClick={leaveGame}>No</Button> 
+            </div>: <span></span>
+          }
+          <ChessBoard 
+            position={fen}
+            onDrop={onDrop}
+          /> 
+        </Card.Body>
+      </Card>
+    </>
   );
 }

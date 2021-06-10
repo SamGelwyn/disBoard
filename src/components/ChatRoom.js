@@ -1,13 +1,17 @@
 import React, { useRef, useState } from 'react';
-import { useAuth } from "../contexts/AuthContext"
-import { db } from "../firebase"
-import { ChatMessage } from "./ChatMessage"
+import { Form, Card, Button } from "react-bootstrap"
+import { useAuth } from "../contexts/AuthContext";
+import { db } from "../firebase";
+import firebase from "firebase/app"
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { ChatMessage } from "./ChatMessage";
+import { FormControl } from 'react-bootstrap';
 
-export function ChatRoom() {
+export default function ChatRoom() {
   const { currentUser } = useAuth()
-  const dummy = useRef();
+  const focus = useRef();
   const messagesRef = db.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.orderBy('createdAt').limitToLast(20);
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 
@@ -17,34 +21,50 @@ export function ChatRoom() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const { uid, photoURL } = currentUser
+    const { uid } = currentUser
 
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
-      photoURL
     })
 
     setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
+    focus.current.scrollIntoView({ behavior: 'smooth' });
   }
 
-  return (<>
-    <main>
+  return currentUser && (
+    <>
+      <Card>
+        <Card.Body>
+        
+          <main>
 
-      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+          {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
-      <span ref={dummy}></span>
+          <span ref={focus}></span>
 
-    </main>
+          </main>
 
-    <form onSubmit={sendMessage}>
+          <Form onSubmit={sendMessage}>
+            <Form.Row>
+              <Form.Group id="formMessage">
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+                <Form.Control value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Write Message Here..." />
 
-      <button type="submit" disabled={!formValue}>🕊️</button>
+              </Form.Group>
 
-    </form>
-  </>)
+              <Button className="w-100" variant="primary" type="submit" disabled={!formValue}>🕊️</Button>
+
+            </Form.Row>
+
+
+
+          </Form>
+
+        </Card.Body>
+        
+      </Card>
+    </>
+  )
 };
