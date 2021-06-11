@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Form, Button, Card, } from "react-bootstrap"
-import { useHistory } from "react-router-dom"
+import { Button, Card, } from "react-bootstrap"
+import { useHistory, Link } from "react-router-dom"
 import ChessBoard from 'chessboardjsx'
 import Chess from 'chess.js'
 
@@ -61,6 +61,9 @@ export default function ChessGame() {
           /> 
         </Card.Body>
       </Card>
+      <div className="w-100 text-center mt-2">
+      <Link to="/">Leave</Link>
+    </div>
     </>
   );
 }

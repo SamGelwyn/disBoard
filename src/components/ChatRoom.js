@@ -5,7 +5,6 @@ import { db } from "../firebase";
 import firebase from "firebase/app"
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { ChatMessage } from "./ChatMessage";
-import { FormControl } from 'react-bootstrap';
 
 export default function ChatRoom() {
   const { currentUser } = useAuth()
@@ -54,7 +53,7 @@ export default function ChatRoom() {
 
               </Form.Group>
 
-              <Button className="w-100" variant="primary" type="submit" disabled={!formValue}>🕊️</Button>
+              <Button className="w-100" variant="primary" type="submit" disabled={!formValue}>{currentUser.email}🕊️</Button>
 
             </Form.Row>
 
