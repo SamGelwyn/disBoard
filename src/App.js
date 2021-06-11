@@ -42,7 +42,7 @@ export default function App() {
 
           </Router>
         </div>
-        <div classname="w-100" style={{display: 'inline-block',
+        <div style={{display: 'inline-block',
           maxWidth: '300px'}}>
           <ChatRoom />
         </div>

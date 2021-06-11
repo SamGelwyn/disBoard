@@ -2,15 +2,19 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+// import { db } from "../firebase";
 
 export default function Signup() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
+  // const sobriquetRef = useRef()
+  // const usersRef = db.collection('users');
   const { signup } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
+  const { currentUser } = useAuth()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -23,6 +27,11 @@ export default function Signup() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
+      console.log(currentUser.uid);
+
+      // await usersRef.doc(currentUser.uid).set({
+      //   'sobriquet': sobriquetRef.current.value
+      // })
       history.push("/")
     } catch {
       setError("Failed to create an account")
